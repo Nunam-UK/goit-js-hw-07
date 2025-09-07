@@ -18,24 +18,49 @@
 // Якщо користувач заповнив усі поля і відправив форму, збери значення полів в об'єкт з двома властивостями, де ключ — це ім'я інпутів, а значення — відповідні значення цих інпутів, очищені від пробілів по краях. Для доступу до елементів форми використовуй властивість elements.
 // При сабміті форми виведи об'єкт із введеними даними в консоль і очисти значення полів форми методом reset.
 
-const login = document.querySelector('.login-form');
-login.addEventListener('submit', onSubmit);
+// const login = document.querySelector('.login-form');
+// login.addEventListener('submit', onSubmit);
+
+// function onSubmit(event) {
+//   event.preventDefault(); // Зупинити перезавантяження сторінки
+
+//   const formEl = event.currentTarget;
+//   const emailEl = formEl.elements.email;
+//   const passwordEl = formEl.elements.password;
+
+//   if (emailEl.value === '' || passwordEl.value === '') {
+//     alert('All form fields must be filled in');
+//   }
+
+//   const data = {};
+//   data.email = emailEl.value.trim();
+//   data.password = passwordEl.value.trim();
+//   console.log(data);
+
+//   formEl.reset();
+// }
+
+const loginForm = document.querySelector('.login-form');
+
+loginForm.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
-  event.preventDefault(); // Зупинити перезавантяження сторінки
+  event.preventDefault(); // Зупинити перезавантаження сторінки
 
-  const formEl = event.currentTarget;
-  const emailEl = formEl.elements.email;
-  const passwordEl = formEl.elements.password;
+  const form = event.currentTarget;
+  const email = form.elements.email.value.trim();
+  const password = form.elements.password.value.trim();
 
-  if (emailEl.value === '' || passwordEl.value === '') {
+  if (email === '' || password === '') {
     alert('All form fields must be filled in');
+    return;
   }
 
-  const data = {};
-  data.email = emailEl.value.trim();
-  data.password = passwordEl.value.trim();
-  console.log(data);
+  const formData = {
+    email,
+    password,
+  };
 
-  formEl.reset();
+  console.log(formData);
+  form.reset();
 }
